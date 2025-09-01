@@ -1,0 +1,2 @@
+extends AbstractStateMachine
+class_name EnemyStateMachine

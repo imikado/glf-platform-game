@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk8ja2pba58o5"]
+
+[ext_resource type="Script" uid="uid://btllm4il81l5l" path="res://Screens/boot.gd" id="1_bqsqb"]
+[ext_resource type="Texture2D" uid="uid://dymn8rcvoj12j" path="res://Screens/assets/logo-glf.png" id="1_cma5i"]
+[ext_resource type="PackedScene" uid="uid://d1cvrqr2gtfuv" path="res://Screens/Menu.tscn" id="2_fdmo8"]
+
+[node name="Boot" type="Node2D"]
+script = ExtResource("1_bqsqb")
+menu_scene = ExtResource("2_fdmo8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1150.0
+offset_bottom = 641.0
+color = Color(0.188235, 0.32549, 0.611765, 1)
+
+[node name="Logo-glf" type="Sprite2D" parent="."]
+position = Vector2(220, 127)
+scale = Vector2(0.72449, 0.72449)
+texture = ExtResource("1_cma5i")

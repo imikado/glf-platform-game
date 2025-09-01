@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1cvrqr2gtfuv"]
+
+[ext_resource type="Theme" uid="uid://baqbjvs68nlkt" path="res://Screens/screens.tres" id="1_8eslc"]
+[ext_resource type="Script" uid="uid://tr6hsles7pwm" path="res://Screens/menu.gd" id="1_w77ff"]
+[ext_resource type="PackedScene" uid="uid://qn2y6y3firdn" path="res://Game/Levels/Level_0/Level0.tscn" id="2_cvbb3"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_w77ff")
+main = ExtResource("2_cvbb3")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_8eslc")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 1157.0
+offset_bottom = 645.0
+color = Color(0, 0, 0, 1)
+
+[node name="PlayButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 177.0
+offset_right = 426.0
+offset_bottom = 232.0
+text = "Play"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 35.0
+offset_right = 892.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 25
+text = "Le Jeu sans nom"
+
+[connection signal="button_up" from="Control/PlayButton" to="." method="_on_play_button_button_up"]

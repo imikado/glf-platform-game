@@ -1,0 +1,388 @@
+[gd_scene load_steps=24 format=3 uid="uid://bubk0i851ttv"]
+
+[ext_resource type="Script" uid="uid://d1ikhsq3020ha" path="res://Game/Actors/Players/Platform/PlatformPlayer/platform_player.gd" id="1_b57aq"]
+[ext_resource type="Texture2D" uid="uid://cjd0cpnokfimk" path="res://Game/Actors/Players/Platform/PlatformPlayer/player-idle.png" id="2_apsfu"]
+[ext_resource type="Script" uid="uid://bl25ar0h7gx8p" path="res://Game/Actors/Players/Platform/PlatformPlayer/states/idle.gd" id="3_3vlj4"]
+[ext_resource type="Script" uid="uid://bygnh73e1rfbo" path="res://Game/Actors/state_machine.gd" id="3_ccm7d"]
+[ext_resource type="Texture2D" uid="uid://cwmj3b3kbn5p6" path="res://Game/Actors/Players/Platform/PlatformPlayer/player-walking.png" id="3_cnhef"]
+[ext_resource type="Texture2D" uid="uid://drq11xcq2g824" path="res://Game/Actors/Players/Platform/PlatformPlayer/player-use-magic-stick.png" id="4_524hi"]
+[ext_resource type="Texture2D" uid="uid://b52pc1lyo0vnj" path="res://Game/Actors/Players/Platform/PlatformPlayer/magic-stick.png" id="4_qmj8t"]
+[ext_resource type="Texture2D" uid="uid://8elj61scfnwl" path="res://Game/Actors/Players/Platform/PlatformPlayer/player-use-magic-freeze.png" id="5_gfrrq"]
+[ext_resource type="Script" uid="uid://cj7ktpb1trgch" path="res://Game/Actors/Players/Platform/PlatformPlayer/states/walking.gd" id="5_gfwjf"]
+[ext_resource type="Script" uid="uid://xvujbe00ur4a" path="res://Game/Actors/Players/Platform/PlatformPlayer/states/use_magic_stick.gd" id="9_5o45m"]
+
+[sub_resource type="Animation" id="Animation_ycgij"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("magicStick:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("hit/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_c700w"]
+resource_name = "idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_apsfu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_ankae"]
+resource_name = "use-magic-freeze"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_gfrrq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.433333, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("magicStick:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("hit/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333, 0.4, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_y53px"]
+resource_name = "use-magic-stick"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_524hi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("magicStick:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("hit/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_tl7ww"]
+resource_name = "walking"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_cnhef")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b85n4"]
+_data = {
+&"RESET": SubResource("Animation_ycgij"),
+&"idle": SubResource("Animation_c700w"),
+&"use-magic-freeze": SubResource("Animation_ankae"),
+&"use-magic-stick": SubResource("Animation_y53px"),
+&"walking": SubResource("Animation_tl7ww")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqpvb"]
+size = Vector2(4, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awouv"]
+atlas = ExtResource("4_qmj8t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoyja"]
+atlas = ExtResource("4_qmj8t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3yuh"]
+atlas = ExtResource("4_qmj8t")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hjqkm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awouv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoyja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3yuh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CameraTexture" id="CameraTexture_pgshj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qfgbi"]
+radius = 5.0
+height = 16.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "state_machine")]
+script = ExtResource("1_b57aq")
+sprite = NodePath("Sprite2D")
+state_machine = NodePath("StateMachine")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_b85n4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="hit" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/hit"]
+position = Vector2(11, 11)
+shape = SubResource("RectangleShape2D_bqpvb")
+
+[node name="magicStick" type="AnimatedSprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(2, 0)
+sprite_frames = SubResource("SpriteFrames_hjqkm")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D/magicStick"]
+position = Vector2(6, 8)
+energy = 0.61
+texture = SubResource("CameraTexture_pgshj")
+texture_scale = 3.64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 7)
+shape = SubResource("CapsuleShape2D_qfgbi")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "animation_player")]
+script = ExtResource("3_ccm7d")
+current_state = NodePath("idle")
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_3vlj4")
+can_move_left_and_right = true
+can_jump = true
+animation_name = "idle"
+
+[node name="walking" type="Node" parent="StateMachine"]
+script = ExtResource("5_gfwjf")
+can_move_left_and_right = true
+can_jump = true
+animation_name = "walking"
+
+[node name="use-magic-stick" type="Node" parent="StateMachine"]
+script = ExtResource("9_5o45m")
+has_gravity = false
+animation_name = "use-magic-stick"
+
+[connection signal="body_entered" from="Sprite2D/hit" to="." method="_on_hit_body_entered"]

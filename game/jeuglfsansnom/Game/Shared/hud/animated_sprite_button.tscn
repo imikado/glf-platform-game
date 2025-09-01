@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://4du01hwt5k1d"]
+
+[ext_resource type="Script" uid="uid://dfgk1yg4n53ok" path="res://Game/Shared/hud/animated_sprite_button.gd" id="1_gct1p"]
+[ext_resource type="Texture2D" uid="uid://jerhxd5rsblp" path="res://Game/Shared/hud/icon_magic_fire.png" id="2_kondl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq2bv"]
+atlas = ExtResource("2_kondl")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j05jv"]
+atlas = ExtResource("2_kondl")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87ryp"]
+atlas = ExtResource("2_kondl")
+region = Rect2(24, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8m4a"]
+atlas = ExtResource("2_kondl")
+region = Rect2(36, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6edgf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq2bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j05jv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87ryp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8m4a")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="AnimatedSpriteButton" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 12.0
+offset_bottom = 12.0
+script = ExtResource("1_gct1p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(1, 1, 1, 0.545098)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_6edgf")
+animation = &"new_animation"

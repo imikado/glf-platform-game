@@ -11,6 +11,9 @@ var acceleration := 1.2
 
 const SUPER_ACCELERATION := 1.8
 
+const STATE_IDLE_WITHOUT_STICK="idle-without-stick"
+const STATE_WALKING_WITHOUT_STICK = "walking-without-stick"
+
 const STATE_IDLE = "idle"
 const STATE_WALKING = "walking"
 const STATE_USE_MAGIC_STICK = "use-magic-stick"
@@ -22,8 +25,6 @@ const ANIM_USER_MAGIC_FIRE="use-magic-fire"
 var has_magic_stick = false
 
 var current_jump_velocity := JUMP_VELOCITY
-
-@onready var magicStick = $Sprite2D/magicStick
 
 @onready var hitBoxArea:CollisionShape2D=$Sprite2D/hit/CollisionShape2D
 
@@ -40,7 +41,6 @@ func _ready() -> void:
 
 func bring_magic_stick():
 	has_magic_stick = true
-	magicStick.visible = has_magic_stick
 
 func get_current_state() -> AbstractPlatfomPlayerState:
 	return _get_current_state()
@@ -61,8 +61,11 @@ func _physics_process(delta: float) -> void:
 		
 		var direction: float = PlayerInputSingleton.get_player_left_or_right_direction()
 		if direction:
-			if get_current_state().name == STATE_IDLE:
-				switch_to_state(STATE_WALKING)
+			if get_current_state().name == STATE_IDLE or get_current_state().name == STATE_IDLE_WITHOUT_STICK:
+				if has_magic_stick:
+					switch_to_state(STATE_WALKING)
+				else:
+					switch_to_state(STATE_WALKING_WITHOUT_STICK)
 
 			if get_current_state().has_gravity and not is_on_floor():
 				velocity.x = move_toward(velocity.x, direction * speed, acceleration)
@@ -72,11 +75,9 @@ func _physics_process(delta: float) -> void:
 			sprite.flip_h = (direction == -1)
 
 			if direction == -1:
-				magicStick.position.x = -10
 				hitBoxArea.position.x =-10
 				
 			else:
-				magicStick.position.x = 0
 				hitBoxArea.position.x =10
 
 			 
@@ -86,7 +87,10 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 			if velocity.x == 0:
-				switch_to_state(STATE_IDLE)
+				if has_magic_stick:
+					switch_to_state(STATE_IDLE)
+				else:	
+					switch_to_state(STATE_IDLE_WITHOUT_STICK)
 
 		
 	move_and_slide()

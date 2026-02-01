@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjd0cpnokfimk"
-path="res://.godot/imported/player-idle.png-81e93d663f34524d0d5f388ec5e31b93.ctex"
+uid="uid://bkov564e2h2rk"
+path="res://.godot/imported/player-idle-without-stick.png-3a69ede59b7c7424348c9dfd34112d60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Actors/Players/Platform/PlatformPlayer/player-idle.png"
-dest_files=["res://.godot/imported/player-idle.png-81e93d663f34524d0d5f388ec5e31b93.ctex"]
+source_file="res://Game/Actors/Players/Platform/PlatformPlayer/player-idle-without-stick.png"
+dest_files=["res://.godot/imported/player-idle-without-stick.png-3a69ede59b7c7424348c9dfd34112d60.ctex"]
 
 [params]
 

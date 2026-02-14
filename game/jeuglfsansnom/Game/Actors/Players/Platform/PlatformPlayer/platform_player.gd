@@ -1,8 +1,8 @@
 extends AbstractActor
 class_name PlatformPlayer
 
-const SPEED = 2200.0
-const SPEED_MAX =  3250.0
+const SPEED = 2600.0
+const SPEED_MAX =  4050.0
 const JUMP_VELOCITY = -270.0
 const SUPER_JUMP_VELOCITY = -450.0
 
@@ -26,7 +26,13 @@ var has_magic_stick = false
 
 var current_jump_velocity := JUMP_VELOCITY
 
+var _direction:float=0.0
+
 @onready var hitBoxArea:CollisionShape2D=$Sprite2D/hit/CollisionShape2D
+
+@onready var fireMarker2D:Marker2D=$Sprite2D/hit/fireMarker2D
+
+const FIREBALL_SCENE = preload("res://Game/Actors/Players/Platform/fire-ball.tscn")
 
 var anim_magic_stick:String='use-magic-stick'
 
@@ -36,8 +42,14 @@ func select_magic_stick():
 func select_magic_freeze():
 	anim_magic_stick=ANIM_USER_MAGIC_FREEZE
 
+func select_magic_fire():
+	anim_magic_stick=ANIM_USER_MAGIC_FIRE
+
 func _ready() -> void:
 	hitBoxArea.disabled=true
+	
+	GlobalEvents.got_magic_stick.connect(bring_magic_stick)	
+
 
 func bring_magic_stick():
 	has_magic_stick = true
@@ -59,8 +71,8 @@ func _physics_process(delta: float) -> void:
  
 	if get_current_state().can_move_left_and_right:
 		
-		var direction: float = PlayerInputSingleton.get_player_left_or_right_direction()
-		if direction:
+		_direction = PlayerInputSingleton.get_player_left_or_right_direction()
+		if _direction:
 			if get_current_state().name == STATE_IDLE or get_current_state().name == STATE_IDLE_WITHOUT_STICK:
 				if has_magic_stick:
 					switch_to_state(STATE_WALKING)
@@ -68,17 +80,19 @@ func _physics_process(delta: float) -> void:
 					switch_to_state(STATE_WALKING_WITHOUT_STICK)
 
 			if get_current_state().has_gravity and not is_on_floor():
-				velocity.x = move_toward(velocity.x, direction * speed, acceleration)
+				velocity.x = move_toward(velocity.x, _direction * speed, acceleration)
 			else:
-				velocity.x = move_toward(velocity.x, direction * speed*delta, acceleration)
+				velocity.x = move_toward(velocity.x, _direction * speed*delta, acceleration)
  
-			sprite.flip_h = (direction == -1)
+			sprite.flip_h = (_direction == -1)
 
-			if direction == -1:
+			if _direction == -1:
 				hitBoxArea.position.x =-10
+				fireMarker2D.position.x = -10
 				
 			else:
 				hitBoxArea.position.x =10
+				fireMarker2D.position.x = 10
 
 			 
 
@@ -101,6 +115,19 @@ func improve_jump_velocity():
 	speed = SPEED_MAX
 	$Sprite2D.modulate = Color(1, 2, 1)
 
+func shoot_fireball():
+	print('shoot')
+	var fireball = FIREBALL_SCENE.instantiate()
+	fireball.global_position = fireMarker2D.global_position
+	get_tree().root.add_child(fireball)
+	
+	var fireball_direction=1.0
+	if hitBoxArea.position.x < 0:
+		fireball_direction=-1.0
+		
+	fireball.set_direction(fireball_direction)
+	
+	
 
 func _on_hit_body_entered(body: Node2D) -> void:
  	

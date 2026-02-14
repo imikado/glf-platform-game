@@ -1,4 +1,4 @@
-extends AbstractActor
+extends AbstractEnemy
 class_name PlatformMushroom
 
 const STATE_WALKING='walking';

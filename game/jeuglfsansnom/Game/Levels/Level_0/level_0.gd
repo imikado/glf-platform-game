@@ -4,13 +4,23 @@ extends Node2D
 
 @onready var player:PlatformPlayer=$PlatformPlayer
 
+const DEBUG=false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-		
+	GlobalEvents.got_magic_stick.connect(on_player_got_magic_stick)
+	
 	GlobalEvents.got_magic_freeze_sort.connect(on_player_got_magic_freeze_sort)
 	GlobalEvents.got_magic_fire_sort.connect(on_player_got_magic_fire_sort)
 
-	GlobalEvents.got_magic_stick.connect(on_player_got_magic_stick)
+
+	if DEBUG:
+		
+		GlobalEvents.got_magic_stick.emit()
+		GlobalEvents.got_magic_freeze_sort.emit()
+		GlobalEvents.got_magic_fire_sort.emit()
+
+		player.position.x+=600
 
 	pass # Replace with function body.
 
@@ -32,6 +42,7 @@ func _process(delta: float) -> void:
 
 
 func _on_hud_player_select_magic_fire() -> void:
+	player.select_magic_fire()
 	pass # Replace with function body.
 
 

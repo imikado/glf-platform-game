@@ -1,7 +1,7 @@
 extends AbstractActor
 class_name PlatformPlayer
 
-const SPEED = 2600.0
+const SPEED = 2800.0
 const SPEED_MAX =  4050.0
 const JUMP_VELOCITY = -270.0
 const SUPER_JUMP_VELOCITY = -450.0
@@ -9,7 +9,7 @@ const SUPER_JUMP_VELOCITY = -450.0
 var speed := SPEED
 var acceleration := 1.2
 
-const SUPER_ACCELERATION := 1.8
+const SUPER_ACCELERATION := 2.0
 
 const STATE_IDLE_WITHOUT_STICK="idle-without-stick"
 const STATE_WALKING_WITHOUT_STICK = "walking-without-stick"

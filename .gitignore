@@ -22,5 +22,7 @@ game/jeuglfsansnom/export/HTML5/*
 */.~lock.p
 
 #krita
-ssets/graphism/platform/actors/players/player/*autosave.kra
+assets/graphism/platform/actors/players/player/*autosave.kra
 
+# export
+game/jeuglfsansnom/export/*

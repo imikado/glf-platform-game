@@ -4,6 +4,8 @@ const SPEED:float=50.0
 
 var _direction=0
 
+var _damage=5
+
 @onready var _anim:AnimatedSprite2D=$AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
@@ -22,7 +24,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is AbstractEnemy:
-		body.queue_free()
+		body.damaged(_damage)
 	pass # Replace with function body.
 
 func set_direction(direction)->void:

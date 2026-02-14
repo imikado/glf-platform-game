@@ -31,8 +31,12 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func damaged():
+func damaged(damage:int):
 	switch_to_state(STATE_DAMAGED)
+	life-=damage
+	if life<=0:
+		queue_free()
+	
 	
 func freezed():
 	switch_to_state(STATE_FREEZED)

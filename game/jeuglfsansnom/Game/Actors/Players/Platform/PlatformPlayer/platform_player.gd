@@ -1,7 +1,7 @@
 extends AbstractActor
 class_name PlatformPlayer
 
-const SPEED = 1800.0
+const SPEED = 2200.0
 const SPEED_MAX =  3250.0
 const JUMP_VELOCITY = -270.0
 const SUPER_JUMP_VELOCITY = -450.0

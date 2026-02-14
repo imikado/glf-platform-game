@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://qn2y6y3firdn"]
+[gd_scene load_steps=17 format=4 uid="uid://qn2y6y3firdn"]
 
 [ext_resource type="Script" uid="uid://cgmv2rpua1ias" path="res://Game/Levels/Level_0/level_0.gd" id="1_3s0rd"]
 [ext_resource type="Texture2D" uid="uid://cy6v4l36hnqm6" path="res://Game/Levels/Level_0/tileMap.png" id="1_qu20q"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cfv7ptsv3nrny" path="res://Game/Actors/Enemies/Platform/PlatformMushroom.tscn" id="8_madtp"]
 [ext_resource type="PackedScene" uid="uid://bbp6nqqifavj7" path="res://Game/Levels/Level_0/Shared/item_magic_freeze.tscn" id="8_sgmso"]
 [ext_resource type="PackedScene" uid="uid://cxmei1ghmvqt4" path="res://Game/Shared/hudPlatform.tscn" id="10_ilt02"]
+[ext_resource type="PackedScene" uid="uid://c7sbsui82ieoo" path="res://Game/Levels/Level_0/Shared/item_magic_fire.tscn" id="11_knaoy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ws4mt"]
 texture = ExtResource("2_rh00t")
@@ -141,6 +142,10 @@ position = Vector2(569, 216)
 [node name="magic_cubeStaticBody2D2" parent="cubes" instance=ExtResource("4_71btw")]
 position = Vector2(1609, 99)
 spawned_item = ExtResource("8_sgmso")
+
+[node name="magic_fire_cubeStaticBody2D2" parent="cubes" instance=ExtResource("4_71btw")]
+position = Vector2(1697, 152)
+spawned_item = ExtResource("11_knaoy")
 
 [node name="enemies" type="Node2D" parent="."]
 position = Vector2(205, 214)

@@ -8,6 +8,8 @@ extends Node2D
 func _ready() -> void:
 		
 	GlobalEvents.got_magic_freeze_sort.connect(on_player_got_magic_freeze_sort)
+	GlobalEvents.got_magic_fire_sort.connect(on_player_got_magic_fire_sort)
+
 	GlobalEvents.got_magic_stick.connect(on_player_got_magic_stick)
 
 	pass # Replace with function body.
@@ -19,6 +21,10 @@ func on_player_got_magic_stick():
 func on_player_got_magic_freeze_sort():
 	hud.enableIcon(HudPlatform.MAGIC_FREEZE)
 	hud._on_magic_freeze_press()
+
+func on_player_got_magic_fire_sort():
+	hud.enableIcon(HudPlatform.MAGIC_FIRE)
+	hud._on_magic_fire_press()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

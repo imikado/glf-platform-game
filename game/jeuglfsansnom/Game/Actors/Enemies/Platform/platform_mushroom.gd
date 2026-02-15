@@ -4,6 +4,7 @@ class_name PlatformMushroom
 const STATE_WALKING='walking';
 const STATE_DAMAGED='damaged'
 const STATE_FREEZED='freezed'
+const STATE_DIING='diing'
 
 const SPEED = 50.0
 var speed := SPEED
@@ -18,6 +19,12 @@ func get_current_state() -> AbstractPlatfomEnemyState:
 
 func _physics_process(delta: float) -> void:
 	
+	if life<=0:
+		velocity.x=0
+		move_and_slide()
+
+		return
+		
 	if is_on_wall():
 		direction *= -1
 
@@ -35,7 +42,11 @@ func damaged(damage:int):
 	switch_to_state(STATE_DAMAGED)
 	life-=damage
 	if life<=0:
-		queue_free()
+		switch_to_state(STATE_DIING)
+	
+
+func remove():
+	queue_free()
 	
 	
 func freezed():

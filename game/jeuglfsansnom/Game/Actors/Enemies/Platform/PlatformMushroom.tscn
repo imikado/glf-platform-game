@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfv7ptsv3nrny"]
+[gd_scene load_steps=16 format=3 uid="uid://cfv7ptsv3nrny"]
 
 [ext_resource type="Script" uid="uid://cu3bxff61mkec" path="res://Game/Actors/Enemies/Platform/platform_mushroom.gd" id="1_bdman"]
 [ext_resource type="Texture2D" uid="uid://2mdogaimp8op" path="res://Game/Actors/Enemies/Platform/PlatformMushroom/mushroom-walking.png" id="1_ubhmq"]
 [ext_resource type="Script" uid="uid://bygnh73e1rfbo" path="res://Game/Actors/state_machine.gd" id="3_5f03i"]
+[ext_resource type="Texture2D" uid="uid://dw8r86kfni2ht" path="res://Game/Actors/Enemies/Platform/PlatformMushroom/mushroom-diing.png" id="3_x6crf"]
 [ext_resource type="Script" uid="uid://dahv7nkfd5fgr" path="res://Game/Actors/Enemies/Platform/PlatformMushroom/states/walking.gd" id="4_segbx"]
 [ext_resource type="Script" uid="uid://c1c5qo8jhjcqi" path="res://Game/Actors/Enemies/Platform/PlatformMushroom/states/damaged.gd" id="5_v3x3h"]
 [ext_resource type="Script" uid="uid://ca5tvmtlfbsr0" path="res://Game/Actors/Enemies/Platform/PlatformMushroom/states/freezed.gd" id="6_w6x8x"]
+[ext_resource type="Script" uid="uid://i3pbuo5ahn1f" path="res://Game/Actors/Enemies/Platform/PlatformMushroom/states/diing.gd" id="7_eeycf"]
 
 [sub_resource type="Animation" id="Animation_4hh04"]
 length = 0.001
@@ -262,10 +264,65 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_eeycf"]
+resource_name = "diing"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_x6crf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.53333336, 0.6666667, 0.8, 0.96666664, 1.3333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.4666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_06w6f"]
 _data = {
 &"RESET": SubResource("Animation_4hh04"),
 &"damaged": SubResource("Animation_auw3n"),
+&"diing": SubResource("Animation_eeycf"),
 &"freezed": SubResource("Animation_x0pq4"),
 &"walking": SubResource("Animation_e6v0d")
 }
@@ -312,3 +369,8 @@ animation_name = "damaged"
 script = ExtResource("6_w6x8x")
 has_gravity = false
 animation_name = "freezed"
+
+[node name="diing" type="Node" parent="StateMachine"]
+script = ExtResource("7_eeycf")
+animation_name = "diing"
+metadata/_custom_type_script = "uid://ct8w4jldikdcp"

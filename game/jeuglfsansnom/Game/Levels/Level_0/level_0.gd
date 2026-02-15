@@ -4,7 +4,7 @@ extends Node2D
 
 @onready var player:PlatformPlayer=$PlatformPlayer
 
-const DEBUG=false
+const DEBUG=true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,7 +20,7 @@ func _ready() -> void:
 		GlobalEvents.got_magic_freeze_sort.emit()
 		GlobalEvents.got_magic_fire_sort.emit()
 
-		player.position.x+=600
+		player.position.x+=200
 
 	pass # Replace with function body.
 

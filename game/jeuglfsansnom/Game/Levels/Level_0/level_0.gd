@@ -4,7 +4,7 @@ extends Node2D
 
 @onready var player:PlatformPlayer=$PlatformPlayer
 
-const DEBUG=true
+const DEBUG=false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://ckdw1wqire5ta"]
+
+[ext_resource type="Theme" uid="uid://baqbjvs68nlkt" path="res://Screens/screens.tres" id="1_7w64c"]
+
+[node name="WorldMap" type="Node2D" unique_id=494150449]
+
+[node name="Control" type="Control" parent="." unique_id=371371238]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_7w64c")
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=30888063]
+texture_filter = 4
+layout_mode = 0
+offset_top = 1.0
+offset_right = 479.0
+offset_bottom = 270.0
+color = Color(0.5019608, 0.7490196, 0.91764706, 1)
+
+[node name="world map" type="Label" parent="Control" unique_id=1553992677]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 11.0
+offset_right = 286.0
+offset_bottom = 34.0
+text = "World Map"
+
+[node name="world 0" type="Button" parent="Control" unique_id=426976093]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.2
+anchor_bottom = 0.2
+offset_left = 238.0
+offset_top = 222.0
+offset_right = 238.0
+offset_bottom = 222.0

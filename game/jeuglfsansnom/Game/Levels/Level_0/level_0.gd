@@ -84,3 +84,8 @@ func _on_hud_player_select_magic_freeze() -> void:
 func _on_hud_player_select_magic_stick() -> void:
 	player.select_magic_stick()
 	pass # Replace with function body.
+
+
+func _on_level_exit_body_entered(body: Node2D) -> void:
+	if body is PlatformPlayer:
+		get_tree().change_scene_to_file("res://Screens/WorldMap.tscn")

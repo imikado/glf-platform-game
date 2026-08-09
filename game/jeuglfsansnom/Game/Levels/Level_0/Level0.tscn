@@ -78,6 +78,9 @@ texture = ExtResource("1_qu20q")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_7spqq")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbw6o"]
+size = Vector2(18, 242.5)
+
 [node name="Level0" type="Node2D" unique_id=343980405]
 script = ExtResource("1_3s0rd")
 
@@ -154,6 +157,13 @@ position = Vector2(205, 214)
 [node name="PlatformMushroom" parent="enemies" unique_id=809537273 instance=ExtResource("8_madtp")]
 position = Vector2(342, 10)
 
+[node name="LevelExit" type="Area2D" parent="." unique_id=24763431]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=1211920732]
+position = Vector2(1997, 122.25)
+shape = SubResource("RectangleShape2D_qbw6o")
+
 [connection signal="player_select_magic_fire" from="PlatformPlayer/Camera2D/HUD" to="." method="_on_hud_player_select_magic_fire"]
 [connection signal="player_select_magic_freeze" from="PlatformPlayer/Camera2D/HUD" to="." method="_on_hud_player_select_magic_freeze"]
 [connection signal="player_select_magic_stick" from="PlatformPlayer/Camera2D/HUD" to="." method="_on_hud_player_select_magic_stick"]
+[connection signal="body_entered" from="LevelExit" to="." method="_on_level_exit_body_entered"]

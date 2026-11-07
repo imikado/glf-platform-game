@@ -6,6 +6,7 @@
 [node name="MappingButton" type="Button" unique_id=2093550370]
 offset_right = 8.0
 offset_bottom = 8.0
+theme = ExtResource("2_j0onm")
 theme_override_font_sizes/font_size = 12
 script = ExtResource("1_k1rch")
 
